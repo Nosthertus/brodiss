@@ -1,0 +1,22 @@
+{
+  "name": "diet-chat",
+  "homepage": "https://github.com/Nosthertus/diet-chat",
+  "authors": [
+    "Nosthertus <darkfreak17@hotmail.com>"
+  ],
+  "description": "A chat made with diet.js framework",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "~0.11.4"
+  }
+}

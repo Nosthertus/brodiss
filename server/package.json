@@ -1,0 +1,27 @@
+{
+  "name": "diet-chat",
+  "version": "1.0.0",
+  "description": "A chat made with diet.js framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nosthertus/diet-chat.git"
+  },
+  "keywords": [
+    "chat",
+    "diet.js",
+    "node.js"
+  ],
+  "author": "Oscar Reyes <darkfreak17@hotmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nosthertus/diet-chat/issues"
+  },
+  "homepage": "https://github.com/Nosthertus/diet-chat#readme",
+  "dependencies": {
+    "diet": "^0.9.22"
+  }
+}
