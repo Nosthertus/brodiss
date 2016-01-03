@@ -8,7 +8,12 @@
 	<link rel="stylesheet" href="assets/css/main.css">
 </head>
 
-<body layout="column" ng-controller="MainController">
+<body layout="column" ng-controller="MainController" layout-fill>
+
+	<ng-include src="'views/layout/main.html'" layout-fill></ng-include>
+
+	<!-- Socket settings -->
+	<script src="socket.io/socket.io.js"></script>
 	
 	<!-- Angular Material Dependencies -->
 	<script src="bower_components/angular/angular.min.js"></script>
@@ -20,12 +25,10 @@
 	<!-- Angular Logic -->
 	<script src="assets/js/main.js"></script>
 	<script src="assets/js/controllers/MainController.js"></script>
+	<script src="assets/js/controllers/ChatController.js"></script>
 
-	<!-- Socket settings -->
-	<script src="socket.io/socket.io.js"></script>
-	<script type="text/javascript">
-		var socket = io('http://127.0.0.1:3000');
-	</script>
+	<!-- Angular services -->
+	<script src="assets/js/services/socket.js"></script>
 </body>
 
 </html>
