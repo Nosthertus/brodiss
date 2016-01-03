@@ -1,12 +1,27 @@
-var server = require('diet');
-var sequelize = require('sequelize');
-var app = server();
+/**
+ * Load all dependecies for application
+ */
+var server = require('diet'),
+	sequelize = require('sequelize'),
+	static = require('./bin/diet-static'),
+	socketio = require('socket.io');
 
+/**
+ * Start the web server
+ */
+var app = server();
 app.listen('127.0.0.1:3000');
 
-// Set database handler
+/**
+ * Start the webSocket server
+ */
+var io = socketio(app.server);
+
+/**
+ * Set database handler
+ */
 app.header(function($){
-	$.db = new sequelize('test', 'root', '3141', {
+	$.db = new sequelize('brodiss', 'root', '3141', {
 		host: '127.0.0.1',
 		dialect: 'mysql',
 		pool: {
@@ -19,9 +34,18 @@ app.header(function($){
 	$.return();
 });
 
-app.get('/', function($){
-	$.end('Hello world');
+/**
+ * Define static files config and attach to server
+ * @type {[type]}
+ */
+var files = static({
+	path: app.path + '/static',
+	index: false,
+	showScriptName: false
 });
+app.footer(files);
 
-// Routes
-require('./routes/users')(app);
+/**
+ * Register all socket events
+ */
+require('./socket/events')(io);

@@ -1,4 +1,4 @@
-<html lang="en" ng-app="StarterApp">
+<html lang="en" ng-app="Brodiss">
 
 <head>
 	<meta name="viewport" content="initial-scale=1" charset="utf-8"/>
@@ -8,28 +8,8 @@
 	<link rel="stylesheet" href="assets/css/main.css">
 </head>
 
-<body layout="column" ng-controller="AppController as vm">
-	<md-toolbar layout="row">
-		<div class="md-toolbar-tools">
-			<md-button ng-click="vm.toggleSidenav('left')" hide-gt-sm class="md-icon-button">
-				<md-icon aria-label="Menu" md-svg-icon="https://s3-us-west-2.amazonaws.com/s.cdpn.io/68133/menu.svg">
-				</md-icon>
-			</md-button>
-			<h1>Diet-chat</h1>
-		</div>
-	</md-toolbar>
-	<div layout="row" flex>
-		<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-4dp" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
-			<md-button class="md-accent">Button 1</md-button>
-			<md-button class="md-accent">Button 2</md-button>
-		</md-sidenav>
-		<div layout="column" flex id="content">
-			<md-content layout="column" flex class="md-padding">
-				This Starter Application consists of a Toolbar, SideNav (with two buttons), and Content area.
-				<p>This is the content area! </p>
-			</md-content>
-		</div>
-	</div>
+<body layout="column" ng-controller="MainController">
+	
 	<!-- Angular Material Dependencies -->
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script src="bower_components/angular-animate/angular-animate.min.js"></script>
@@ -39,6 +19,13 @@
 
 	<!-- Angular Logic -->
 	<script src="assets/js/main.js"></script>
+	<script src="assets/js/controllers/MainController.js"></script>
+
+	<!-- Socket settings -->
+	<script src="socket.io/socket.io.js"></script>
+	<script type="text/javascript">
+		var socket = io('http://127.0.0.1:3000');
+	</script>
 </body>
 
 </html>
