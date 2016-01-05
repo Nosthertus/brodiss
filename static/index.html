@@ -10,13 +10,16 @@
 
 <body layout="column" ng-controller="MainController" layout-fill>
 
-	<ng-include src="'views/layout/main.html'" layout-fill></ng-include>
+	<md-content ui-view layout-fill>
+
+	</md-content>
 
 	<!-- Socket settings -->
 	<script src="socket.io/socket.io.js"></script>
 	
 	<!-- Angular Material Dependencies -->
 	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 	<script src="bower_components/angular-animate/angular-animate.min.js"></script>
 	<script src="bower_components/angular-aria/angular-aria.min.js"></script>
 
@@ -26,9 +29,11 @@
 	<script src="assets/js/main.js"></script>
 	<script src="assets/js/controllers/MainController.js"></script>
 	<script src="assets/js/controllers/ChatController.js"></script>
+	<script src="assets/js/controllers/LoginController.js"></script>
 
 	<!-- Angular services -->
-	<script src="assets/js/services/socket.js"></script>
+	<script src="assets/js/services/socketService.js"></script>
+	<script src="assets/js/services/userService.js"></script>
 </body>
 
 </html>

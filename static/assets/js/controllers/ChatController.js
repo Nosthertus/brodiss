@@ -1,7 +1,7 @@
 (function(angular){
 	var app = angular.module('Brodiss');
 
-	app.controller('ChatController', ['$scope', 'socket', function($scope, socket){
+	app.controller('ChatController', ['$scope', 'socketService', function($scope, socket){
 		$scope.messages = [];
 
 		$scope.messages.push({

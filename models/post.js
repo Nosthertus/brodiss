@@ -1,36 +1,28 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('user', {
+  return sequelize.define('post', {
     id: {
       type: DataTypes.INTEGER(10),
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    name: {
-      type: DataTypes.STRING,
+    content: {
+      type: DataTypes.TEXT,
       allowNull: false
     },
-    lastname: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    date_birth: {
-      type: DataTypes.DATE,
-      allowNull: false
+    user_id: {
+      type: DataTypes.INTEGER(10),
+      allowNull: false,
+      references: {
+        model: 'user',
+        key: 'id'
+      }
     },
     created_at: {
       type: DataTypes.DATE,
-      allowNull: true,
+      allowNull: false,
       defaultValue: 'CURRENT_TIMESTAMP'
     },
     updated_at: {
@@ -39,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: 'CURRENT_TIMESTAMP'
     }
   }, {
-    tableName: 'user',
+    tableName: 'post',
     freezeTableName: true,
     timestamps: false
   });

@@ -1,7 +1,7 @@
 (function(angular){
 	var app = angular.module('Brodiss');
 
-	app.service('socket', ['$rootScope', function($rootScope){
+	app.service('socketService', ['$rootScope', function($rootScope){
 		var socket = io();
 
 		var self = this;

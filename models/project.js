@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('user', {
+  return sequelize.define('project', {
     id: {
       type: DataTypes.INTEGER(10),
       allowNull: false,
@@ -12,20 +12,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    lastname: {
+    description: {
       type: DataTypes.STRING,
-      allowNull: false
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    date_birth: {
-      type: DataTypes.DATE,
       allowNull: false
     },
     created_at: {
@@ -39,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: 'CURRENT_TIMESTAMP'
     }
   }, {
-    tableName: 'user',
+    tableName: 'project',
     freezeTableName: true,
     timestamps: false
   });
