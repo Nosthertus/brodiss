@@ -1,7 +1,7 @@
 (function(angular){
 	var app = angular.module('Brodiss');
 
-	app.controller('MainController', ['$scope', '$templateCache', '$state', 'userService', function($scope, $templateCache, $state, user){
+	app.controller('MainController', ['$scope', '$templateCache', '$state', 'userService', '$mdDialog', function($scope, $templateCache, $state, user, $mdDialog){
 		$templateCache.removeAll();
 
 		$scope.$on('$locationChangeSuccess', function(event, state){
@@ -9,5 +9,16 @@
 				$state.go('login');
 			}
 		});
+
+		$scope.alert = function(title, string){
+			var alert = $mdDialog.alert({
+				title: title,
+				textContent: string,
+				ariaLabel: 'Alert',
+				ok: 'ok'
+			});
+
+			$mdDialog.show(alert);
+		};
 	}]);
 })(angular);

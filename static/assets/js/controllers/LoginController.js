@@ -1,7 +1,7 @@
 (function(angular){
 	var app = angular.module('Brodiss');
 
-	app.controller('LoginController', ['$scope', 'userService', function($scope, user){
+	app.controller('LoginController', ['$scope', 'userService', '$state', 'socketService', function($scope, user, $state, socketService){
 		$scope.user = {};
 
 		$scope.submit = function(state){
@@ -9,5 +9,10 @@
 				user.login($scope.user);
 			}
 		};
+
+		$scope.$on('user.login', function(event){
+			socketService.connect(user.getName());
+			$state.go('chat');
+		});
 	}]);
 })(angular);

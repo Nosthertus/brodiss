@@ -1,5 +1,5 @@
 <md-content layout-fill>
-	<md-tabs md-dynamic-height class="md-whiteframe-10dp" id="signing" layout-padding>
+	<md-tabs md-dynamic-height md-stretch-tabs="always" class="md-whiteframe-10dp" id="signing" layout-padding>
 		<md-tab label="Login">
 			<form ng-submit="submit('login')">
 				<md-content layout="column">
@@ -7,30 +7,9 @@
 						<label>Username</label>
 						<input ng-model="user.name">
 					</md-input-container>
-					<md-input-container>
-						<label>Password</label>
-						<input ng-model="user.password" type="password">
-					</md-input-container>
 				</md-content>
 				<md-content>
 					<md-button type="submit" class="md-primary">Login</md-button>
-				</md-content>
-			</form>
-		</md-tab>
-		<md-tab label="Register">
-			<form ng-submit="submit('register')">
-				<md-content layout="column">
-					<md-input-container>
-						<label>Username</label>
-						<input ng-model="user.name">
-					</md-input-container>
-					<md-input-container>
-						<label>Password</label>
-						<input ng-model="user.password" type="password">
-					</md-input-container>
-				</md-content>
-				<md-content>
-					<md-button type="submit" class="md-primary">Register</md-button>
 				</md-content>
 			</form>
 		</md-tab>

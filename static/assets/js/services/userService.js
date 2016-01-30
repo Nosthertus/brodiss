@@ -11,6 +11,11 @@
 
 		self.isGuest = true;
 
+		self._populate = function(data){
+			for(prop in self._data)
+				self._data[prop] = data[prop];
+		};
+
 		self.getName = function(){
 			return self._data.name;
 		};
@@ -20,9 +25,10 @@
 		};
 
 		self.login = function(credentials){
-			socket.emit('user:login', credentials, function(socket, data){
-				console.log(socket);
-			});
+			self._populate(credentials);
+			self.isGuest = false;
+
+			$rootScope.$broadcast('user.login');
 		};
 	}]);
 })(angular);

@@ -1,10 +1,17 @@
 (function(angular){
 	var app = angular.module('Brodiss');
 
-	app.service('socketService', ['$rootScope', function($rootScope){
-		var socket = io();
+	app.service('socketService', ['$rootScope', '$window', function($rootScope, $window){
+		var socket = null;
 
 		var self = this;
+
+		self.connect = function(data){
+			var qs = serialize({
+				username: data
+			});
+			socket = io.connect($window.location.origin, {query: qs});
+		};
 
 		self.on = function(event, callback){
 			socket.on(event, function(data){
@@ -22,5 +29,18 @@
 				});
 			})
 		};
+
+		function serialize(obj, prefix) {
+			var str = [];
+			for(var p in obj) {
+				if (obj.hasOwnProperty(p)) {
+					var k = prefix ? prefix + "[" + p + "]" : p, v = obj[p];
+					str.push(typeof v == "object" ?
+						serialize(v, k) :
+						encodeURIComponent(k) + "=" + encodeURIComponent(v));
+				}
+			}
+			return str.join("&");
+		}
 	}]);
 })(angular);
