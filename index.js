@@ -2,7 +2,6 @@
  * Load all dependecies for application
  */
 var server = require('diet'),
-	sequelize = require('sequelize'),
 	static = require('diet-static-stream'),
 	socketio = require('socket.io');
 

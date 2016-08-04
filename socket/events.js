@@ -6,6 +6,10 @@ module.exports = function(io){
 			name: socket.handshake.query.username
 		};
 
+		io.emit("connection.start", {
+			username: user.name
+		});
+
 		socket.on('message:new', function(data){
 			io.emit('message:new', {
 				username: user.name,
