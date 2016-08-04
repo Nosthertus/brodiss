@@ -1,6 +1,11 @@
-var moment = require("moment");
+var History = require("./../lib/History");
+var moment  = require("moment");
 
 module.exports = function(io){
+	var history = new History({
+		timeFormat: "YYYY-MM-DD HH:mm:ss"
+	});
+
 	io.on('connection', function(socket){
 		console.log(moment().format("HH:mm:ss") + ' new socket connected');
 
@@ -14,11 +19,20 @@ module.exports = function(io){
 		});
 
 		socket.on('message:new', function(data){
-			io.emit('message:new', {
+			var msg = {
 				username: user.name,
 				message: data,
-				time: moment().format("HH:mm:ss")
-			});
+			};
+
+			if(obj = history.addItem(msg)){
+				Object.assign(msg, obj);
+			}
+
+			else{
+				throw new Error("Error on adding item into History");
+			}
+
+			io.emit('message:new', msg);
 		});
 	});
 
