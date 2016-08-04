@@ -19,19 +19,19 @@
 		 * Socket events
 		 */		
 		socket.on('message:new', function(socket, data){
-			$scope.messages.push({
-				username: data.username,
-				message: data.message,
+			Object.assign(data, {
 				type: "normal_message"
 			});
+
+			$scope.messages.push(data);
 		});
 
 		socket.on("connection.start", (socket, data) => {
-			$scope.messages.push({
-				username: data.username,
-				message: "",
+			Object.assign(data, {
 				type: "system_announce"
 			});
+
+			$scope.messages.push(data);
 		});
 	}]);
 })(angular);

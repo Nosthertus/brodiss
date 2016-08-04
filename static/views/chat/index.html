@@ -3,12 +3,12 @@
 		<md-list flex class="md-dense md-whiteframe-4dp">
 			<md-list-item ng-repeat="msg in messages" ng-class="{'md-2-item': (!msg.type && msg.type !== 'system_announce')}">
 				<div ng-if="msg.type != 'system_announce'" class="md-list-item-text">
-					<h3>{{msg.username}}</h3>
+					<h3>{{msg.username}} ({{msg.time}})</h3>
 					<p>{{msg.message}}</p>
 				</div>
 
 				<div ng-if="msg.type == 'system_announce'" class=" md-list-item-text system announce-normal">
-					<p><b>{{msg.username}}</b> has connected</p>
+					<p><b>{{msg.username}}</b> has connected ({{msg.time}})</p>
 				</div>
 
 				<md-divider ng-if="!$last"></md-divider>
