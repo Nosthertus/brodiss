@@ -3,14 +3,14 @@
  */
 var server = require('diet'),
 	sequelize = require('sequelize'),
-	static = require('./bin/diet-static'),
+	static = require('diet-static-stream'),
 	socketio = require('socket.io');
 
 /**
  * Start the web server
  */
 var app = server();
-app.listen('127.0.0.1:3000');
+app.listen(3000);
 
 /**
  * Start the webSocket server
@@ -18,33 +18,13 @@ app.listen('127.0.0.1:3000');
 var io = socketio(app.server);
 
 /**
- * Set database handler
- */
-app.header(function($){
-	$.db = new sequelize('brodiss', 'root', '3141', {
-		host: '127.0.0.1',
-		dialect: 'mysql',
-		pool: {
-			max: 5,
-			min: 0,
-			idle: 10000
-		}
-	});
-
-	$.return();
-});
-
-/**
  * Define static files config and attach to server
  * @type {[type]}
  */
-var files = static({
-	path: app.path + '/static',
-	index: false,
-	showScriptName: false,
-	cache: 'no-store'
-});
-app.footer(files);
+app.footer(static({
+	path: "static",
+	cache: "no-store"
+}));
 
 /**
  * Register all socket events

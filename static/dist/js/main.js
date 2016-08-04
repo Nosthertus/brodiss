@@ -1,5 +1,5 @@
 (function(angular){
-	var app = angular.module('Brodiss', [
+	var app = angular.module('node-chat', [
 		'ngMaterial',
 		'ui.router'
 	]);

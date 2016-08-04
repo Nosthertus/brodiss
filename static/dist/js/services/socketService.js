@@ -1,5 +1,5 @@
 (function(angular){
-	var app = angular.module('Brodiss');
+	var app = angular.module('node-chat');
 
 	app.service('socketService', ['$rootScope', '$window', function($rootScope, $window){
 		var socket = null;
