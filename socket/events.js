@@ -9,31 +9,47 @@ module.exports = function(io){
 	io.on('connection', function(socket){
 		console.log(moment().format("HH:mm:ss") + ' new socket connected');
 
-		var user = {
-			name: socket.handshake.query.username,
-			id: socket.id
-		};
-
 		var session = {
-			username: user.name,
-			message: "user logged in",
-			type: "session.start"
+			id: socket.id,
+			username: "guest"
 		};
-
-		if(history.add_entry(session)){
-			io.emit("connection.start", {
-				username: user.name,
-				time: moment().format("HH:mm:ss")
-			});
-		}
 
 		socket.on("debug.history", function(data){
 			socket.emit("debug.history", history.get_all());
 		});
 
-		socket.on('message:new', function(data){
+		socket.on("session.start", function(data){
+			var login = data;
+
+			session.username = data.username;
+
+			Object.assign(login, {
+				login_time: moment().format("YYYY-MM-DD HH:mm:ss"),
+				type: "session.start"
+			});
+
+			if(entry = history.add_entry(login)){
+				socket.emit("history_sync", {
+					history: "some history"
+				});
+
+				io.emit("session.start", entry);
+
+				socket.emit("history.sync", history.get_all());
+			}
+
+			else{
+				throw new Error("Error on adding new entry into History");
+			}
+		});
+
+		socket.on("history.request", function(){
+			socket.emit("history.sync", history.get_all());
+		});
+
+		socket.on('message.new', function(data){
 			var msg = {
-				username: user.name,
+				username: session.username,
 				message: data,
 				type: "message.normal"
 			};
@@ -46,7 +62,7 @@ module.exports = function(io){
 				throw new Error("Error on adding item into History");
 			}
 
-			io.emit('message:new', msg);
+			io.emit('message.new', msg);
 		});
 	});
 
