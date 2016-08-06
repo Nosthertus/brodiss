@@ -11,7 +11,10 @@
 		};
 
 		$scope.$on('user.login', function(event){
-			socketService.connect(user.getName());
+			socketService.login({
+				name: user.getName()
+			});
+
 			$state.go('chat');
 		});
 	}]);

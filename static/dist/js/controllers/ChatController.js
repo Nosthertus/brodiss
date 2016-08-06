@@ -25,8 +25,8 @@
 
 			$scope.messages.push(data);
 		});
-
-		socket.on("connection.start", (socket, data) => {
+		
+		socket.on("session.start", (socket, data) => {
 			Object.assign(data, {
 				type: "system_announce"
 			});

@@ -2,15 +2,14 @@
 	var app = angular.module('node-chat');
 
 	app.service('socketService', ['$rootScope', '$window', function($rootScope, $window){
-		var socket = null;
+		var socket = socket = io.connect($window.location.origin);
 
 		var self = this;
 
-		self.connect = function(data){
-			var qs = serialize({
-				username: data
+		self.login = function(data){
+			self.emit("session.start", {
+				username: data.name
 			});
-			socket = io.connect($window.location.origin, {query: qs});
 		};
 
 		self.on = function(event, callback){
@@ -29,18 +28,5 @@
 				});
 			})
 		};
-
-		function serialize(obj, prefix) {
-			var str = [];
-			for(var p in obj) {
-				if (obj.hasOwnProperty(p)) {
-					var k = prefix ? prefix + "[" + p + "]" : p, v = obj[p];
-					str.push(typeof v == "object" ?
-						serialize(v, k) :
-						encodeURIComponent(k) + "=" + encodeURIComponent(v));
-				}
-			}
-			return str.join("&");
-		}
 	}]);
 })(angular);
