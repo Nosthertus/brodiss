@@ -36,8 +36,6 @@
 			}
 
 			$scope.messages = history;
-
-			console.log(history);
 		});
 		
 		socket.on("session.start", (socket, data) => {
