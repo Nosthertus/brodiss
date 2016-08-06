@@ -11,6 +11,7 @@ module.exports = function(io){
 
 		var session = {
 			id: socket.id,
+			username: "guest"
 		};
 
 		socket.on("debug.history", function(data){
@@ -19,6 +20,8 @@ module.exports = function(io){
 
 		socket.on("session.start", function(data){
 			var login = data;
+
+			session.username = data.username;
 
 			Object.assign(login, {
 				login_time: moment().format("YYYY-MM-DD HH:mm:ss"),
@@ -31,6 +34,8 @@ module.exports = function(io){
 				});
 
 				io.emit("session.start", entry);
+
+				socket.emit("history.sync", history.get_all());
 			}
 
 			else{
@@ -38,9 +43,13 @@ module.exports = function(io){
 			}
 		});
 
-		socket.on('message:new', function(data){
+		socket.on("history.request", function(){
+			socket.emit("history.sync", history.get_all());
+		});
+
+		socket.on('message.new', function(data){
 			var msg = {
-				username: user.name,
+				username: session.username,
 				message: data,
 				type: "message.normal"
 			};
@@ -53,7 +62,7 @@ module.exports = function(io){
 				throw new Error("Error on adding item into History");
 			}
 
-			io.emit('message:new', msg);
+			io.emit('message.new', msg);
 		});
 	});
 

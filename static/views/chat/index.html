@@ -1,13 +1,13 @@
 <md-content layout="column" layout-fill ng-controller="ChatController">
 	<md-content flex="90">
 		<md-list flex class="md-dense md-whiteframe-4dp">
-			<md-list-item ng-repeat="msg in messages" ng-class="{'md-2-item': (!msg.type && msg.type !== 'system_announce')}">
-				<div ng-if="msg.type != 'system_announce'" class="md-list-item-text">
+			<md-list-item ng-repeat="msg in messages" ng-class="{'md-2-item': (!msg.type && msg.type !== 'session.start')}">
+				<div ng-if="msg.type != 'session.start'" class="md-list-item-text">
 					<h3>{{msg.username}} ({{msg.time}})</h3>
 					<p>{{msg.message}}</p>
 				</div>
 
-				<div ng-if="msg.type == 'system_announce'" class=" md-list-item-text system announce-normal">
+				<div ng-if="msg.type == 'session.start'" class=" md-list-item-text system announce-normal">
 					<p><b>{{msg.username}}</b> has connected ({{msg.time}})</p>
 				</div>
 
