@@ -1,5 +1,5 @@
 (function(angular){
-	var app = angular.module('Brodiss');
+	var app = angular.module('node-chat');
 
 	app.controller('MainController', ['$scope', '$templateCache', '$state', 'userService', '$mdDialog', function($scope, $templateCache, $state, user, $mdDialog){
 		$templateCache.removeAll();
