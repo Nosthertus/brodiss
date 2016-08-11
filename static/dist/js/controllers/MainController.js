@@ -8,13 +8,18 @@
 		'userService',
 		'$mdDialog',
 		"socketService",
-		function($scope, $templateCache, $state, user, $mdDialog, $socket){
+		"audioService",
+		function($scope, $templateCache, $state, user, $mdDialog, $socket, $audio){
 			$templateCache.removeAll();
 
 			$scope.$on('$locationChangeSuccess', function(event, state){
 				if(user.isGuest){
 					$state.go('login');
 				}
+			});
+
+			$scope.$on("user.login", function(){
+				$audio.loadSounds();
 			});
 			
 			$scope.alert = function(title, string){
