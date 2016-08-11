@@ -1,5 +1,5 @@
 <md-content layout="column" layout-fill ng-controller="ChatController">
-	<md-content flex="90">
+	<md-content flex="90" scroll-glue>
 		<md-list flex class="md-dense md-whiteframe-4dp">
 			<md-list-item ng-repeat="msg in messages" ng-class="{'md-2-item': (!msg.type && msg.type !== 'session.start')}">
 				<div ng-if="msg.type != 'session.start'" class="md-list-item-text">

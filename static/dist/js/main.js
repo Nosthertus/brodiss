@@ -2,6 +2,7 @@
 	var app = angular.module('node-chat', [
 		'ngMaterial',
 		'ui.router',
-		"ngAudio"
+		"ngAudio",
+		"luegg.directives"
 	]);
 })(angular);
