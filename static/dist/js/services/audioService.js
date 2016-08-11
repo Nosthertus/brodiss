@@ -6,7 +6,7 @@
 		function($audio){
 			this.default = {
 				source: {
-					message: "dist/audio/message.mp3"
+					message: "dist/audio/message.wav"
 				}
 			};
 
