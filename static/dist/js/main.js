@@ -1,6 +1,7 @@
 (function(angular){
 	var app = angular.module('node-chat', [
 		'ngMaterial',
-		'ui.router'
+		'ui.router',
+		"ngAudio"
 	]);
 })(angular);
