@@ -1,5 +1,5 @@
 (function(angular){
-	var app = angular.module('Brodiss');
+	var app = angular.module('node-chat');
 
 	app.config(['$stateProvider', function($stateProvider){
 		$stateProvider.state('layout', {

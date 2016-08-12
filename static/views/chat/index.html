@@ -1,11 +1,17 @@
 <md-content layout="column" layout-fill ng-controller="ChatController">
-	<md-content flex="80">
-		<md-list>
-			<md-list-item ng-repeat="msg in messages">
-				<md-content layout-fill layout-padding class="md-list-item-text md-whiteframe-4dp">
-					<h3>{{msg.username}}</h3>
-					<pre>{{msg.message}}</pre>
-				</md-content>
+	<md-content flex="90" scroll-glue>
+		<md-list flex class="md-dense md-whiteframe-4dp">
+			<md-list-item ng-repeat="msg in messages" ng-class="{'md-2-item': (!msg.type && msg.type !== 'session.start')}">
+				<div ng-if="msg.type != 'session.start'" class="md-list-item-text">
+					<h3>{{msg.username}} ({{msg.time}})</h3>
+					<p>{{msg.message}}</p>
+				</div>
+
+				<div ng-if="msg.type == 'session.start'" class=" md-list-item-text system announce-normal">
+					<p><b>{{msg.username}}</b> has connected ({{msg.time}})</p>
+				</div>
+
+				<md-divider ng-if="!$last"></md-divider>
 			</md-list-item>
 		</md-list>
 	</md-content>
@@ -13,6 +19,7 @@
 	<md-content flex>
 		<md-input-container class="md-block">
 			<label>Text message</label>
+		
 			<textarea ng-model="message" columns="1" ng-keyup="send($event)"></textarea>
 		</md-input-container>
 	</md-content>

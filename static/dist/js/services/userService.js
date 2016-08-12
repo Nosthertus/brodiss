@@ -1,5 +1,5 @@
 (function(angular){
-	var app = angular.module('Brodiss');
+	var app = angular.module('node-chat');
 
 	app.service('userService', ['$rootScope', 'socketService', function($rootScope, socket){
 		var self = this;

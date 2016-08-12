@@ -14,3 +14,11 @@ md-sidenav.md-locked-open {
 	width: 500px;
 	margin: 15em auto;
 }
+
+md-list-item .system{
+	margin-left: 36px;
+}
+
+.system.announce-normal{
+	color: #868686;
+}
